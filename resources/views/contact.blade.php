@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel - About</title>
+    <title>Laravel - Contact</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -70,9 +70,9 @@
     <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
-                About Me !
+                Contact Me !
             </div>
-            <p>I like to make </p>
+            <p>I would love chat </p>
         </div>
     </div>
 </body>
