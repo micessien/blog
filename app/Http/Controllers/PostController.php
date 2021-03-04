@@ -47,6 +47,8 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->save();
 
+        $request->session()->flash('success', "The blog post was successfully save!");
+
         // redirect to another page
         return redirect()->route('posts.show', $post->id);
     }
@@ -59,7 +61,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('posts.show');
     }
 
     /**
