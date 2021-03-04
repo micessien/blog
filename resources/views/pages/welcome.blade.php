@@ -15,34 +15,13 @@
 
 <div class="row">
     <div class="col-md-8">
+        @foreach ($posts as $post)
         <div class="post">
-            <h3>Post tiltle</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo officia, ducimus nobis in eius
-                voluptatem quaerat eligendi dolorem rerum dicta, maiores quis explicabo harum dolorum amet
-                impedit facere velit corporis!</p>
+            <h3>{{ $post->title }}</h3>
+            <p>{{ substr($post->body, 0, 300) }} {{strlen($post->body) > 300 ? "..." : ""}}</p>
             <a href="#" class="btn btn-primary">Read More</a>
         </div>
-        <div class="post">
-            <h3>Post tiltle</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo officia, ducimus nobis in eius
-                voluptatem quaerat eligendi dolorem rerum dicta, maiores quis explicabo harum dolorum amet
-                impedit facere velit corporis!</p>
-            <a href="#" class="btn btn-primary">Read More</a>
-        </div>
-        <div class="post">
-            <h3>Post tiltle</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo officia, ducimus nobis in eius
-                voluptatem quaerat eligendi dolorem rerum dicta, maiores quis explicabo harum dolorum amet
-                impedit facere velit corporis!</p>
-            <a href="#" class="btn btn-primary">Read More</a>
-        </div>
-        <div class="post">
-            <h3>Post tiltle</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo officia, ducimus nobis in eius
-                voluptatem quaerat eligendi dolorem rerum dicta, maiores quis explicabo harum dolorum amet
-                impedit facere velit corporis!</p>
-            <a href="#" class="btn btn-primary">Read More</a>
-        </div>
+        @endforeach
     </div>
     <div class="col-md-3 col-md-offset-1">Sidebar</div>
 </div>
