@@ -51,7 +51,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->save();
 
-        $request->session()->flash('success', "The blog post was successfully save!");
+        Session::flash('success', "The blog post was successfully save!");
 
         // redirect to another page
         return redirect()->route('posts.show', $post->id);
@@ -103,7 +103,7 @@ class PostController extends Controller
         $post->body = $request->input('body');
         $post->save();
         // Set flash data with success message
-        $request->session()->flash('success', "The blog post was successfully update.");
+        Session::flash('success', "The blog post was successfully update.");
         // redirect with flash data to posts.show
         return redirect()->route('posts.show', $post->id);
     }
