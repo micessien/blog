@@ -53,9 +53,8 @@ class PostController extends Controller
         $post->save();
 
         Session::flash('success', "The blog post was successfully save!");
-
         // redirect to another page
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', [$post->id, $post->slug]);
     }
 
     /**
@@ -102,11 +101,12 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->slug = str_slug($request->input('title'));
         $post->save();
         // Set flash data with success message
         Session::flash('success', "The blog post was successfully update.");
         // redirect with flash data to posts.show
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', [$post->id, $post->slug]);
     }
 
     /**

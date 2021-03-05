@@ -15,6 +15,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', "PagesController@getIndex");
     Route::get('about', "PagesController@getAbout");
     Route::get('contact', "PagesController@getContact");
-    Route::resource('posts', 'PostController');
+    // All route posts - make it separate to personalize slug
+    Route::resource('posts', 'PostController', ['except' => ['show']]);
+    Route::get('posts/{post}-{slug}', "PostController@show")->name('posts.show');
     //
 });
