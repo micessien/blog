@@ -13,6 +13,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('blog/{post}-{slug}', 'BlogController@getSingle')->name('blog.single');
+    Route::get('blog', 'BlogController@getIndex')->name('blog.index');
     Route::get('/', "PagesController@getIndex");
     Route::get('about', "PagesController@getAbout");
     Route::get('contact', "PagesController@getContact");
