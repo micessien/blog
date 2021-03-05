@@ -12,6 +12,11 @@ class Post extends Model
         return url("/posts/{$this->id}-". Str::slug($this->title));
     }
 
+    public function pathBlog()
+    {
+        return url("/blog/{$this->id}-". Str::slug($this->title));
+    }
+
     public function pathIdSlugOnly()
     {
         return $this->id . Str::slug($this->title);
