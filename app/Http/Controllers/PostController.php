@@ -49,6 +49,7 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->slug = str_slug($request->title);
         $post->save();
 
         Session::flash('success', "The blog post was successfully save!");
