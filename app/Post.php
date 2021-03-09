@@ -7,6 +7,11 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
     public function path()
     {
         return url("/posts/{$this->id}-". Str::slug($this->title));
