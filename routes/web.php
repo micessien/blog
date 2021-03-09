@@ -12,6 +12,9 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    // Categories
+    Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+
     Route::get('blog/{post}-{slug}', 'BlogController@getSingle')->name('blog.single');
     Route::get('blog', 'BlogController@getIndex')->name('blog.index');
     Route::get('/', "PagesController@getIndex");

@@ -27,8 +27,7 @@
                         aria-expanded="false">My Account <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/posts">Posts</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="{{ route('categories.index') }}">Categories</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Logout</a></li>
                     </ul>
