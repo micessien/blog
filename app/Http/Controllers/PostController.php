@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -28,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -42,12 +44,14 @@ class PostController extends Controller
         // validate the data
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'category_id' => 'required|integer',
             'body' => 'required',
         ]);
         // store in the database
         $post = new Post;
 
         $post->title = $request->title;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
         $post->slug = str_slug($request->title);
         $post->save();
@@ -79,8 +83,15 @@ class PostController extends Controller
     {
         // find a post in the database and save as var
         $post = Post::find($id);
+        // set categories
+        $categories = Category::all();
+        $cats = [];
+        foreach ($categories as $category) {
+            $cats[$category->id] = $category->name;
+        }
+        // dd($cats);
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post);
+        return view('posts.edit')->withPost($post)->withCategories($cats);
     }
 
     /**
@@ -95,11 +106,13 @@ class PostController extends Controller
         // Validate the data
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'category_id' => 'required|integer',
             'body' => 'required',
         ]);
         // Save the data to the database
         $post = Post::find($id);
         $post->title = $request->input('title');
+        $post->category_id = $request->input('category_id');
         $post->body = $request->input('body');
         $post->slug = str_slug($request->input('title'));
         $post->save();

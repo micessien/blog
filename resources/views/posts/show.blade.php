@@ -11,16 +11,20 @@
     <div class="col-md-4">
         <div class="well">
             <dl class="dl-horizontal">
-                <dt>Url:</dt>
-                <dd><a href="{{$post->pathBlog()}}">{{$post->pathBlog()}}</a></dd>
+                <label>Url:</label>
+                <p><a href="{{$post->pathBlog()}}">{{$post->pathBlog()}}</a></p>
             </dl>
             <dl class="dl-horizontal">
-                <dt>Created At:</dt>
-                <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
+                <label>Category:</label>
+                <p>{{$post->category->name}}</p>
             </dl>
             <dl class="dl-horizontal">
-                <dt>Last Updated:</dt>
-                <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
+                <label>Created At:</label>
+                <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
+            </dl>
+            <dl class="dl-horizontal">
+                <label>Last Updated:</label>
+                <p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
             </dl>
             <hr>
             <div class="row">
