@@ -12,6 +12,11 @@ class Post extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
     public function path()
     {
         return url("/posts/{$this->id}-". Str::slug($this->title));
