@@ -4,6 +4,7 @@
 
 @section('stylesheets')
 {!! Html::style('css/parsley.css') !!}
+{!! Html::style('css/select2.min.css') !!}
 @endsection
 
 @section('content')
@@ -23,6 +24,13 @@
             @endforeach
         </select>
 
+        {!! Form::label('tags', 'Tags:') !!}
+        <select class="form-control select2-multi" name="tags[]" id="tags" multiple="multiple">
+            @foreach ($tags as $tag)
+            <option value="{{ $tag->id }}">{{$tag->name}}</option>
+            @endforeach
+        </select>
+
         {!! Form::label('body', 'Post Body:') !!}
         {!! Form::textarea('body', null, ['class'=>'form-control', 'required'=>'']) !!}
 
@@ -34,4 +42,11 @@
 
 @section('scripts')
 {!! Html::script('js/parsley.min.js') !!}
+{!! Html::script('js/select2.min.js') !!}
+<script type="text/javascript">
+    // In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.select2-multi').select2();
+});
+</script>
 @endsection
