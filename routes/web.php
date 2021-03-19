@@ -16,6 +16,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('categories', 'CategoryController', ['except' => ['create']]);
     // Tags
     Route::resource('tags', 'TagController', ['except' => ['create']]);
+    // Comments
+    Route::post('comments/{post_id}', ['uses'=>'CommentsController@store', 'as' => 'comments.store']);
 
     Route::get('blog/{post}-{slug}', 'BlogController@getSingle')->name('blog.single');
     Route::get('blog', 'BlogController@getIndex')->name('blog.index');
