@@ -5,6 +5,15 @@
 @section('stylesheets')
 {!! Html::style('css/parsley.css') !!}
 {!! Html::style('css/select2.min.css') !!}
+<script src="https://cdn.tiny.cloud/1/tfjka7vcrbq1czuhr1t7117gcp5dy9upwrhfcxedfarfovh6/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: '#textarea',
+      plugins: 'link code',
+      menubar: false
+    });
+</script>
 @endsection
 
 @section('content')
@@ -32,7 +41,7 @@
         </select>
 
         {!! Form::label('body', 'Post Body:') !!}
-        {!! Form::textarea('body', null, ['class'=>'form-control', 'required'=>'']) !!}
+        {!! Form::textarea('body', null, ['class'=>'form-control', 'required'=>'', 'id'=>'textarea']) !!}
 
         {!! Form::submit('Create Post', ['class'=>'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;']) !!}
         {!! Form::close() !!}
