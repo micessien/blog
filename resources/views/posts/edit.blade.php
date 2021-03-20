@@ -4,6 +4,15 @@
 
 @section('stylesheets')
 {!! Html::style('css/select2.min.css') !!}
+<script src="https://cdn.tiny.cloud/1/tfjka7vcrbq1czuhr1t7117gcp5dy9upwrhfcxedfarfovh6/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: '#textarea',
+      plugins: 'link code',
+      menubar: false
+    });
+</script>
 @endsection
 
 @section('content')
@@ -20,7 +29,7 @@
         {!! Form::select('tags[]', $tags, null, ['class'=>'form-control select2-multi', 'multiple'=>'multiple']) !!}
 
         {!! Form::label('body', 'Body:', ['class'=>'form-spacing-top']) !!}
-        {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
+        {!! Form::textarea('body', null, ['class'=>'form-control', 'id'=>'textarea']) !!}
     </div>
     <div class="col-md-4">
         <div class="well">
