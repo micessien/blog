@@ -9,6 +9,7 @@ use App\Category;
 use Session;
 use Purifier;
 use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -51,6 +52,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required|integer',
             'body' => 'required',
+            'featured_image' => 'sometimes|image'
         ]);
         // store in the database
         $post = new Post;
@@ -130,6 +132,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required|integer',
             'body' => 'required',
+            'featured_image' => 'image'
         ]);
         // Save the data to the database
         $post = Post::find($id);
@@ -137,6 +140,19 @@ class PostController extends Controller
         $post->category_id = $request->input('category_id');
         $post->body = Purifier::clean($request->input('body'));
         $post->slug = str_slug($request->input('title'));
+
+        if ($request->hasFile('featured_image')) {
+            // Add the new photo
+            $image = $request->file('featured_image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->resize(800, 400)->save($location);
+            $oldFilename = $post->image;
+            // Update the database
+            $post->image = $filename;
+            // Delete the old photo
+            Storage::delete($oldFilename);
+        }
         $post->save();
 
         if (isset($request->tags)) {
@@ -161,7 +177,10 @@ class PostController extends Controller
         //
         $post = Post::find($id);
         $post->tags()->detach();
+        Storage::delete($post->image);
+
         $post->delete();
+
         Session::flash('success', "The blog post was successfully deleted.");
         return redirect()->route('posts.index');
     }
