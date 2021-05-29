@@ -24,7 +24,8 @@
 
         {!! Form::open(['route' => 'posts.store', 'data-parsley-validate'=>'', 'files'=>true]) !!}
         {!! Form::label('title', 'Title:') !!}
-        {!! Form::text('title', null, ['class'=>'form-control', 'required'=>'', 'maxlength'=>'255']) !!}
+        {!! Form::text('title', null, ['class'=>'form-control', 'required'=>'', 'maxlength'=>'255',
+        'placeholder'=>'Titre article']) !!}
 
         {!! Form::label('category_id', 'Category:') !!}
         <select class="form-control" name="category_id" id="category_id">
@@ -45,6 +46,13 @@
 
         {!! Form::label('body', 'Post Body:') !!}
         {!! Form::textarea('body', null, ['class'=>'form-control', 'required'=>'', 'id'=>'textarea']) !!}
+
+        {!! Form::label('youtube', 'Code Youtube:') !!}
+        {!! Form::text('youtube', null, ['class'=>'form-control', 'maxlength'=>'50', 'placeholder'=>'xjfhn525Q']) !!}
+
+        {!! Form::label('dailymotion', 'Code Dailymotion:') !!}
+        {!! Form::text('dailymotion', null, ['class'=>'form-control', 'maxlength'=>'50', 'placeholder'=>'xjfhn525Q'])
+        !!}
 
         {!! Form::submit('Create Post', ['class'=>'btn btn-success btn-lg btn-block', 'style'=>'margin-top: 20px;']) !!}
         {!! Form::close() !!}

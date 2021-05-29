@@ -52,6 +52,8 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required|integer',
             'body' => 'required',
+            'youtube' => 'max:50',
+            'dailymotion' => 'max:50',
             'featured_image' => 'sometimes|image'
         ]);
         // store in the database
@@ -60,6 +62,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->category_id = $request->category_id;
         $post->body = Purifier::clean($request->body);
+        $post->youtube = $request->youtube;
+        $post->dailymotion = $request->dailymotion;
         $post->slug = str_slug($request->title);
         // Save our image
         if ($request->hasFile('featured_image')) {
@@ -132,6 +136,8 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required|integer',
             'body' => 'required',
+            'youtube' => 'max:50',
+            'dailymotion' => 'max:50',
             'featured_image' => 'image'
         ]);
         // Save the data to the database
@@ -139,6 +145,8 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->category_id = $request->input('category_id');
         $post->body = Purifier::clean($request->input('body'));
+        $post->youtube = $request->input('youtube');
+        $post->dailymotion = $request->input('dailymotion');
         $post->slug = str_slug($request->input('title'));
 
         if ($request->hasFile('featured_image')) {

@@ -33,6 +33,13 @@
 
         {!! Form::label('body', 'Body:', ['class'=>'form-spacing-top']) !!}
         {!! Form::textarea('body', null, ['class'=>'form-control', 'id'=>'textarea']) !!}
+
+        {!! Form::label('youtube', 'Code Youtube:') !!}
+        {!! Form::text('youtube', null, ['class'=>'form-control', 'maxlength'=>'50', 'placeholder'=>'xjfhn525Q']) !!}
+
+        {!! Form::label('dailymotion', 'Code Dailymotion:') !!}
+        {!! Form::text('dailymotion', null, ['class'=>'form-control', 'maxlength'=>'50', 'placeholder'=>'xjfhn525Q'])
+        !!}
     </div>
     <div class="col-md-4">
         <div class="well">

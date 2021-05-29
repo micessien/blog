@@ -9,6 +9,21 @@
         <img src="{{asset('images/'.$post->image)}}" alt="{{"Image ".$post->title}}" height="400" width="800">
         <h1>{{$post->title}}</h1>
         <p>{!! $post->body !!}</p>
+        {{-- Frame youtube --}}
+        @empty(!$post->youtube)
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$post->youtube}}"
+            title="{{$post->title}}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        @endempty
+
+        {{-- Frame dailymotion --}}
+        @empty(!$post->dailymotion)
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"> <iframe
+                style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0"
+                type="text/html" src="https://www.dailymotion.com/embed/video/{{$post->dailymotion}}" width="100%"
+                height="100%" allowfullscreen allow="autoplay"> </iframe> </div>
+        @endempty
         <hr>
         <p>Posted In: {{ $post->category->name }}</p>
     </div>
