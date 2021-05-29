@@ -12,6 +12,11 @@
             style="margin-top: 30px">Edit</a>
     </div>
     <div class="col-md-2">
+        {{-- Get id data for sweet delete  --}}
+        {{-- <input type="hidden" id="actionDeleteVal" value="{{ $tag->id }}" />
+        <button type="button" class="btn btn-danger btn-block actionDeleteBtn" style="margin-top:30px">Delete</button>
+        --}}
+
         {!! Form::open(['route'=>['tags.destroy', $tag->id], 'method'=>'DELETE']) !!}
         {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-block', 'style'=>'margin-top:30px']) !!}
         {!! Form::close() !!}
@@ -48,4 +53,56 @@
             <table>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.actionDeleteBtn').click(function(e) {
+            e.preventDefault();
+            // Get id data
+            var deleteId = $('#actionDeleteVal').val();
+            // alert(deleteId);
+
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cette donnée!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    // Get token
+                    var data = {
+                        "_token": $('input[name=_token]').val(),
+                        "id": deleteId,
+                    };
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/tags/"+deleteId,
+                        data: data,
+                        success: function(response) {
+                            swal(response.status, {
+                                icon: "success",
+                            })
+                            .then((result) => {
+                                location.reload();
+                                // location = "/tags"
+                            });
+                        }
+                    });
+                }
+            });
+
+        })
+    });
+</script>
 @endsection
